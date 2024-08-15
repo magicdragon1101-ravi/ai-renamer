@@ -1,18 +1,18 @@
-const fs = require('fs')
-const path = require('path')
+const fs = require("fs");
+const path = require("path");
 
 const deleteDirectory = ({ folderPath }) => {
   if (fs.existsSync(folderPath)) {
     fs.readdirSync(folderPath).forEach((file) => {
-      const curPath = path.join(folderPath, file)
+      const curPath = path.join(folderPath, file);
       if (fs.lstatSync(curPath).isDirectory()) {
-        deleteDirectory({ folderPath: curPath })
+        deleteDirectory({ folderPath: curPath });
       } else {
-        fs.unlinkSync(curPath)
+        fs.unlinkSync(curPath);
       }
-    })
-    fs.rmdirSync(folderPath)
+    });
+    fs.rmdirSync(folderPath);
   }
-}
+};
 
-module.exports = deleteDirectory
+module.exports = deleteDirectory;
